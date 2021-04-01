@@ -13,9 +13,99 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-route.min.js"></script>
   <script src="script/contactList.js"></script>
 </head>
-<body ng-cloak>
+<body>
   <div class="container">
+    <div class="row p-5">
+      <div class="col-6 layout widget">
+        <div class="row m-3">
+          <div class="col-4">
+            <div class="input-group mb-3">
+              <label for="name">First Name :</label>
+            </div>
+            <div class="input-group mb-3">
+              <label for="name">Last Name :</label>
+            </div>
+            <div class="input-group mb-3">
+              <label for="phone">Phone No:</label>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="First Name" name="firstName" ng-model="contact.firstName" ng-change="findLoanAmount()">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Last Name" name="lastName" ng-model="contact.lastName" ng-change="findLoanAmount()">
+            </div>
+            <div class="input-group mb-3">
+              <input type="tel" class="form-control" placeholder="Phone Number" name="phoneNumber" ng-model="contact.phoneNumber" ng-change="findEMI()">
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <input type="submit" class="btn btn-primary btn-sm" name="Add" value="Add">
+        </div>
+        <div class="mt-5" ng-show = "IsVisible">
+          <!--   Table    -->
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-borderless mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">S.No</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Phone No.</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td><input type="button" class="btn btn-primary btn-sm" name="update" value="Update">
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <!-- Table End -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
 
+    </div>
   </div>
 </body>
 </html>
