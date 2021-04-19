@@ -56,10 +56,11 @@
             <input type="submit" class="btn btn-primary btn-sm" name="Add" value="Add">
           </div>
         </form>
-        <div class="mt-5" ng-show = "IsVisible">
+        <div class="my-2" ng-show = "IsVisible">
+          <p><input type="search" ng-model="name"></p>
           <!--   Table    -->
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
-            <table class="table table-borderless mb-0">
+            <table class="table table-hover">
               <!-- <thead>
                 <tr>
                   <th scope="col">S.No</th>
@@ -69,13 +70,16 @@
                   <th scope="col">Action</th>
                 </tr>
               </thead> -->
-              <tbody ng-repeat="singleData in allData">
-                <tr>
+              <tbody ng-repeat="singleData in allData | filter : name">
+                <tr data-ng-init="btnId = singleData.id;">
                   <!-- <th scope="row">{{ singleData.id }}</th> -->
-                  <td>{{ singleData.firstName }}</td>
+                  <td data-ng-attr-id="btnId" data-ng-click="contactDetails(btnId)" ng-show = "contactName">{{ singleData.firstName }}</td>
                   <td>{{ singleData.lastName }}</td>
-                  <!-- <td>{{ singleData.phone }}</td>
-                  <td><span><i class="fas fa-pen-square"></i></span><span><i class="fas fa-minus-circle btn-danger"></i></span></td> -->
+                </tr>
+
+                <tr>
+                  <!-- <td>{{ singleData.phone }}</td> -->
+                  <td ng-hide = "contactAction"><span><i class="fas fa-pen-square"></i></span><span><i class="fas fa-minus-circle btn-danger"></i></span></td>
                 </tr>
               </tbody>
             </table>

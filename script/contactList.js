@@ -5,6 +5,8 @@ app.controller('ContactController', ['$scope', '$http', '$element', '$window', '
   $scope.hideMinus = true;
   $scope.hidePlus = false;
   $scope.IsVisible = false;
+  $scope.contactAction = true;
+  $scope.contactName = true;
 
   $scope.showContent = function () {
     $scope.showVisible = true;
@@ -18,6 +20,11 @@ app.controller('ContactController', ['$scope', '$http', '$element', '$window', '
     $scope.hideMinus = true;
     $scope.hidePlus = false;
     $scope.IsVisible = true;
+  }
+
+  $scope.contactDetails = function (id) {
+    $scope.contactAction = false;
+    console.log(id);
   }
 
   function viewProfile() {
@@ -41,6 +48,10 @@ app.controller('ContactController', ['$scope', '$http', '$element', '$window', '
           //Success
           $scope.createData = response.data;
           viewProfile();
+          $scope.showVisible = false;
+          $scope.hideMinus = true;
+          $scope.hidePlus = false;
+          $scope.IsVisible = false;
          }, function(error) {
          //Error
          });
