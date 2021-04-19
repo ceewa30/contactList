@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app="contactList" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/contactList.css">
+  <!-- Include main CSS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular-route.min.js"></script>
+  <script src="script/contactList.js"></script>
+</head>
+<body>
+  <div class="container" ng-controller="ContactController">
+    <div class="row p-5">
+      <div class="col-sm-6 layout widget">
+        <div class="mt-5" ng-show = "IsVisible">
+          <div class="py-3">
+            <input ng-model="searchtxt" type="text" placeholder="Search">
+          </div>
+          <!--   Table    -->
+          <div class="table-wrapper-scroll-y my-custom-scrollbar" ng-repeat="singleData in allData | filter : searchtxt">
+            <table class="table table-borderless mb-0">
+              <!-- <thead>
+                <tr>
+                  <th scope="col">S.No</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Phone No.</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead> -->
+              <tbody>
+                <tr>
+                  <!-- <td scope="row">{{ singleData.id }}</td> -->
+                  <td>{{ singleData.firstName }}</td>
+                  <td>{{ singleData.lastName }}</td>
+                  <td>{{ singleData.phone }}</td>
+                  <!-- <td><input type="button" class="btn btn-primary btn-sm" name="update" value="Update"> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <!-- Table End -->
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

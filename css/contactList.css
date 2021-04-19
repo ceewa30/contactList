@@ -4,6 +4,9 @@
 .layout {
   padding: 0;
   border: 0;
+  max-width: 375px;
+  height: 812px;
+  /* font-size: 12px; */
   border-radius: 5px;
   background: #f6f6f6;
   -webkit-box-shadow: 0 35px 20px #c9c9c9;
@@ -14,9 +17,14 @@
   padding: 10px 20px;
   margin: 0;
   background: #ccc;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .coloverride {
   -ms-flex: 0 0 100%;
     flex: 0 0 100%;
     max-width: 100%;
+}
+.table td, .table th {
+    padding: .4rem;
 }

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Contact List</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   <link rel="stylesheet" href="css/contactList.css">
   <!-- Include main CSS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -14,41 +15,52 @@
   <script src="script/contactList.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="container" ng-controller="ContactController">
     <div class="row p-5">
-      <div class="col-6 layout widget">
-        <div class="row m-3">
-          <div class="col-4">
-            <div class="input-group mb-3">
-              <label for="name">First Name :</label>
-            </div>
-            <div class="input-group mb-3">
-              <label for="name">Last Name :</label>
-            </div>
-            <div class="input-group mb-3">
-              <label for="phone">Phone No:</label>
-            </div>
+      <div class="col-7 layout widget">
+        <div class="row justify-content-center">
+          <div class="col-10 pl-5 text-center">
+            <h5>Contacts</h5>
           </div>
-          <div class="col-8">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="First Name" name="firstName" ng-model="contact.firstName" ng-change="findLoanAmount()">
-            </div>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Last Name" name="lastName" ng-model="contact.lastName" ng-change="findLoanAmount()">
-            </div>
-            <div class="input-group mb-3">
-              <input type="tel" class="form-control" placeholder="Phone Number" name="phoneNumber" ng-model="contact.phoneNumber" ng-change="findEMI()">
-            </div>
+          <div class="col-2 text-right">
+            <a href="javascript:void(0)" ng-hide = "hidePlus" ng-click = "showContent();" ><i class="fas fa-plus"></i></a>
+            <a href="javascript:void(0)" ng-hide = "hideMinus" ng-click = "hideContent();" ><i class="fas fa-minus"></i></a>
           </div>
         </div>
-        <div class="">
-          <input type="submit" class="btn btn-primary btn-sm" name="Add" value="Add">
-        </div>
+        <form ng-show = "showVisible" name="formContact" class="needs-validation" enctype="multipart/form-data" ng-submit="createContact(contactinfo);">
+          <div class="row m-3">
+            <div class="col-4">
+              <div class="input-group mb-3">
+                <label for="name">First Name :</label>
+              </div>
+              <div class="input-group mb-3">
+                <label for="name">Last Name :</label>
+              </div>
+              <div class="input-group mb-3">
+                <label for="phone">Phone No:</label>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="First Name" name="firstName" ng-model="contactinfo.firstName" required>
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Last Name" name="lastName" ng-model="contactinfo.lastName" required>
+              </div>
+              <div class="input-group mb-3">
+                <input type="tel" class="form-control" placeholder="Phone Number" name="phoneNumber" ng-model="contactinfo.phoneNumber" required>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <input type="submit" class="btn btn-primary btn-sm" name="Add" value="Add">
+          </div>
+        </form>
         <div class="mt-5" ng-show = "IsVisible">
           <!--   Table    -->
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
             <table class="table table-borderless mb-0">
-              <thead>
+              <!-- <thead>
                 <tr>
                   <th scope="col">S.No</th>
                   <th scope="col">First Name</th>
@@ -56,45 +68,14 @@
                   <th scope="col">Phone No.</th>
                   <th scope="col">Action</th>
                 </tr>
-              </thead>
-              <tbody>
+              </thead> -->
+              <tbody ng-repeat="singleData in allData">
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td><input type="button" class="btn btn-primary btn-sm" name="update" value="Update">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
+                  <!-- <th scope="row">{{ singleData.id }}</th> -->
+                  <td>{{ singleData.firstName }}</td>
+                  <td>{{ singleData.lastName }}</td>
+                  <!-- <td>{{ singleData.phone }}</td>
+                  <td><span><i class="fas fa-pen-square"></i></span><span><i class="fas fa-minus-circle btn-danger"></i></span></td> -->
                 </tr>
               </tbody>
             </table>
