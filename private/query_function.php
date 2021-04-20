@@ -2,14 +2,13 @@
 // create Contact
 function insert_contact($contact) {
     global $db;
-    print_r($contact);
 
     $sql = "INSERT INTO `tbl_contactList` ";
     $sql .= "(`firstName`, `lastName`, `phone`) ";
     $sql .= "VALUES (";
     $sql .= "'" . db_escape($db, $contact['$firstName']) . "',";
     $sql .= "'" . db_escape($db, $contact['$lastName']) . "',";
-    $sql .= "'" . db_escape($db, $contact['$phoneNumber']) . "'";
+    $sql .= "'" . db_escape($db, $contact['$phone']) . "'";
     echo $sql .= ")";
 
     $result = mysqli_query($db, $sql);
@@ -29,7 +28,16 @@ function insert_contact($contact) {
       $query = "SELECT * FROM `tbl_contactList` ORDER BY id ASC";
       $result = mysqli_query($db, $query);
       return $result;
-    }
+  }
+
+  function delete_contact($contact) {
+      global $db;
+      print_r($contact);
+      exit;
+      $query = "SELECT * FROM `tbl_contactList` ORDER BY id ASC";
+      $result = mysqli_query($db, $query);
+      return $result;
+  }
 
   function viewProfile($id, $role) {
     global $db;

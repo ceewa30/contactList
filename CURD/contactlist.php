@@ -8,7 +8,7 @@ $createcontact = json_decode(file_get_contents("php://input"));
 $contact = [];
 $contact['$firstName'] = $createcontact->contactinfo->firstName ?? '';
 $contact['$lastName'] = $createcontact->contactinfo->lastName ?? '';
-$contact['$phoneNumber'] = $createcontact->contactinfo->phoneNumber ?? '';
+$contact['$phone'] = $createcontact->contactinfo->phone ?? '';
 // mysqli insert query
 $query = insert_contact($contact);
 ?>

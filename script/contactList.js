@@ -7,6 +7,7 @@ app.controller('ContactController', ['$scope', '$http', '$element', '$window', '
   $scope.IsVisible = false;
   $scope.contactAction = true;
   $scope.contactName = true;
+  $scope.butn = "Add";
 
   $scope.showContent = function () {
     $scope.showVisible = true;
@@ -33,11 +34,28 @@ app.controller('ContactController', ['$scope', '$http', '$element', '$window', '
   }
 
   $scope.editDetails = function (inx) {
-    console.log("edit");
+    $scope.contactinfo = inx;
+    $scope.butn = "Update";
+    console.log(inx);
+    $scope.showVisible = true;
+    $scope.hideMinus = false;
+    $scope.hidePlus = true;
+    $scope.IsVisible = false;
   }
 
   $scope.deleteDetails = function (inx) {
-    console.log("delete");
+    $http({
+      method: "post",
+      url: "CURD/delete.php",
+      dataType: 'json',
+      data: {id:inx},
+      headers: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" }
+  }).then(function(response) {
+    //Success
+    viewProfile();
+   }, function(error) {
+   //Error
+   });
   }
 
   function viewProfile() {
