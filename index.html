@@ -69,26 +69,15 @@
           <!--   Table    -->
           <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
             <table class="table table-hover">
-              <!-- <thead>
-                <tr>
-                  <th scope="col">S.No</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Phone No.</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead> -->
               <tbody ng-repeat="singleData in allData | filter : name">
                 <tr data-ng-click="contactDetails(singleData);" ng-hide = "singleData.contactName">
-                  <!-- <th scope="row">{{ singleData.id }}</th> -->
-                  <td>{{$index}}</td>
                   <td>{{ singleData.firstName }}</td>
                   <td>{{ singleData.lastName }}</td>
                 </tr>
 
                 <tr data-ng-dblclick="actionDetails(singleData);" ng-show = "singleData.contactAction">
-                  <td><button data-ng-click="editDetails(singleData);" class="btn btn-primary px-3"><i class="fas fa-pen-square" aria-hidden="true"> Edit</i></button></td>
-                  <td><button class="btn btn-danger px-3"><i class="fas fa-minus-circle" aria-hidden="true"> Delete</i></button></td>
+                  <td><button data-ng-click="editDetails(singleData);" class="btn btn-primary btn-sm px-3"><i class="fas fa-pen-square" aria-hidden="true"> Edit</i></button></td>
+                  <td><button data-ng-click="deleteDetails(singleData);" class="btn btn-danger btn-sm px-3"><i class="fas fa-minus-circle" aria-hidden="true"> Delete</i></button></td>
                 </tr>
               </tbody>
             </table>
@@ -96,9 +85,6 @@
         <!-- Table End -->
         </div>
       </div>
-    </div>
-    <div class="row">
-
     </div>
   </div>
 </body>

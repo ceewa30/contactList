@@ -33,7 +33,11 @@ app.controller('ContactController', ['$scope', '$http', '$element', '$window', '
   }
 
   $scope.editDetails = function (inx) {
-    console.log("success");
+    console.log("edit");
+  }
+
+  $scope.deleteDetails = function (inx) {
+    console.log("delete");
   }
 
   function viewProfile() {
