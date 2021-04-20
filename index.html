@@ -57,9 +57,17 @@
           </div>
         </form>
         <div class="my-2" ng-show = "IsVisible">
-          <p><input type="search" ng-model="name"></p>
+          <!-- <p><input type="search" ng-model="name"></p> -->
+          <div class="input-group">
+            <span class="input-group-append">
+              <button class="btn btn-outline-secondary border-right-0 border" type="button">
+                    <i class="fa fa-search"></i>
+              </button>
+            </span>
+            <input class="form-control py-2 border-left-0 border" type="search" ng-model="name">
+        </div>
           <!--   Table    -->
-          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <div class="table-wrapper-scroll-y my-custom-scrollbar mt-3">
             <table class="table table-hover">
               <!-- <thead>
                 <tr>
@@ -71,15 +79,16 @@
                 </tr>
               </thead> -->
               <tbody ng-repeat="singleData in allData | filter : name">
-                <tr data-ng-init="btnId = singleData.id;">
+                <tr data-ng-click="contactDetails(singleData);" ng-hide = "singleData.contactName">
                   <!-- <th scope="row">{{ singleData.id }}</th> -->
-                  <td data-ng-attr-id="btnId" data-ng-click="contactDetails(btnId)" ng-show = "contactName">{{ singleData.firstName }}</td>
+                  <td>{{$index}}</td>
+                  <td>{{ singleData.firstName }}</td>
                   <td>{{ singleData.lastName }}</td>
                 </tr>
 
-                <tr>
-                  <!-- <td>{{ singleData.phone }}</td> -->
-                  <td ng-hide = "contactAction"><span><i class="fas fa-pen-square"></i></span><span><i class="fas fa-minus-circle btn-danger"></i></span></td>
+                <tr data-ng-dblclick="actionDetails(singleData);" ng-show = "singleData.contactAction">
+                  <td><button data-ng-click="editDetails(singleData);" class="btn btn-primary px-3"><i class="fas fa-pen-square" aria-hidden="true"> Edit</i></button></td>
+                  <td><button class="btn btn-danger px-3"><i class="fas fa-minus-circle" aria-hidden="true"> Delete</i></button></td>
                 </tr>
               </tbody>
             </table>

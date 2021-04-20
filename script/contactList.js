@@ -22,9 +22,18 @@ app.controller('ContactController', ['$scope', '$http', '$element', '$window', '
     $scope.IsVisible = true;
   }
 
-  $scope.contactDetails = function (id) {
-    $scope.contactAction = false;
-    console.log(id);
+  $scope.contactDetails = function (inx) {
+    inx.contactAction = true;
+    inx.contactName = true;
+  }
+
+  $scope.actionDetails = function (inx) {
+    inx.contactAction = false;
+    inx.contactName = false;
+  }
+
+  $scope.editDetails = function (inx) {
+    console.log("success");
   }
 
   function viewProfile() {
