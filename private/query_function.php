@@ -39,46 +39,16 @@ function insert_contact($contact) {
       return $result;
   }
 
-  function viewProfile($id, $role) {
-    global $db;
-    if($role == 'A') {
-      $table =  "admin";
-    } elseif ($role == 'T') {
-      $table = "teacher";
-    } elseif ($role == 'P') {
-      $table = "parent";
-    }
-    $query = "SELECT `user_id`, `role`, `status`, `" . $table . "_first_name`,
-     `" . $table . "_last_name`,
-     `" . $table . "_mobile_no`,
-     `" . $table . "_email`,
-     `" . $table . "_photo`,
-     `" . $table . "_date_of_birth`,
-     `" . $table . "_id`,
-     `address_1`,
-     `address_2`,
-     `city`,
-     `state`,
-     `zipcode`
-     FROM `tbl_user`
-    LEFT JOIN
-        `tbl_" . $table . "` USING (`" . $table . "_id`)
-    LEFT JOIN
-        `tbl_address` USING (`" . $table . "_id`) ";
-    $query .="WHERE user_id =" . db_escape($db, $id);
-    $result = mysqli_query($db, $query);
-    return $result;
-  }
 
-  function updateProfile($user) {
+  function edit_contact($contact) {
     global $db;
-    print_r($user); exit;
-    $query = "UPDATE tbl_user ";
-    $query .="SET email = '" . db_escape($db, $user['$email']) . "', ";
-    $query .="address = '" . db_escape($db, $user['$address']) . "', ";
-    $query .="address1 = '" . db_escape($db, $user['$address1']) . "', ";
-    $query .="phone = '" . db_escape($db, $user['$phone']) . "' ";
-    $query .="WHERE user_id ='" . db_escape($db, $user['$id']) . "'";
+
+    $query = "UPDATE tbl_contactList ";
+    $query .="SET `firstName` = '" . db_escape($db, $contact['$firstName']) . "', ";
+    $query .="`lastName` = '" . db_escape($db, $contact['$lastName']) . "', ";
+    $query .="`phone` = '" . db_escape($db, $contact['$phone']) . "', ";
+    $query .="`updated_at` = '" . db_escape($db, $contact['$updated_at']) . "' ";
+    $query .="WHERE `id` ='" . db_escape($db, $contact['$id']) . "'";
     $result = mysqli_query($db, $query);
     return $result;
   }

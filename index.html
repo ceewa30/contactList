@@ -15,7 +15,7 @@
   <script src="script/contactList.js"></script>
 </head>
 <body>
-  <div class="container" ng-controller="ContactController">
+  <div class="container" ng-controller="ContactController" ng-init="viewProfile()">
     <div class="row p-5">
       <div class="col-7 layout widget">
         <div class="row justify-content-center">
@@ -28,7 +28,7 @@
           </div>
         </div>
         <form ng-show = "showVisible" name="formContact" class="needs-validation" enctype="multipart/form-data" ng-submit="createContact(contactinfo);">
-          <div class="row m-3">
+          <div class="row my-5">
             <div class="col-4">
               <div class="input-group mb-3">
                 <label for="name">First Name :</label>
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="">
-            <input type="submit" class="btn btn-primary btn-sm" name="Add" value="{{butn}}">
+            <input type="submit" class="btn btn-primary btn-sm" ng-disabled="formContact.$invalid" name="{{butn}}" ng-model="contactinfo.butn" value="{{butn}}">
           </div>
         </form>
         <div class="my-2" ng-show = "IsVisible">
